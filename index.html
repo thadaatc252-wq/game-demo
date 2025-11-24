@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Side-Scroller Runner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-container">
+    <div id="scoreboard">
+      <span>Score: <span id="score">0</span></span>
+      <span>Highscore: <span id="highscore">0</span></span>
+    </div>
+    <canvas id="game-canvas"></canvas>
+    <div id="player">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+    </div>
+    <div id="ui-buttons">
+      <button id="start-btn">Start</button>
+      <button id="restart-btn" style="display:none;">Restart</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

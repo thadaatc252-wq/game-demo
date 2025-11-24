@@ -1,0 +1,216 @@
+/* Basic reset and styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #88c0d0, #eceff4);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #game-container {
+    position: relative;
+    width: 90vw;
+    max-width: 600px;
+    height: 400px;
+    background: #d8dee9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #4c566a88;
+  }
+  
+  #scoreboard {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+    color: #2e3440;
+    z-index: 10;
+  }
+  
+  canvas#game-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #d8dee9; /* fallback */
+    z-index: 1;
+  }
+  
+  /* Player Character styling */
+  #player {
+    position: absolute;
+    bottom: 40px;
+    left: 50px;
+    width: 60px;
+    height: 80px;
+    background-color: #8fbcbb;
+    border-radius: 50% / 60%;
+    box-shadow: inset -5px 0 10px #81a1c1;
+    z-index: 5;
+    transition: transform 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Eyes */
+  .eye {
+    position: absolute;
+    top: 22px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    border: 1px solid #4c566a;
+  }
+  
+  .eye.left {
+    left: 16px;
+  }
+  
+  .eye.right {
+    right: 16px;
+  }
+  
+  /* Arms */
+  .arm {
+    position: absolute;
+    top: 38px;
+    width: 10px;
+    height: 30px;
+    background: #81a1c1;
+    border-radius: 5px;
+    transform-origin: top center;
+  }
+  
+  .arm.left {
+    left: 0;
+    animation: armSwing 1s ease-in-out infinite;
+  }
+  
+  .arm.right {
+    right: 0;
+    animation: armSwing 1s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+  
+  /* Legs */
+  .leg {
+    position: absolute;
+    bottom: 0;
+    width: 15px;
+    height: 30px;
+    background: #81a1c1;
+    border-radius: 5px;
+    transform-origin: top center;
+    animation: legMove 1s ease-in-out infinite;
+  }
+  
+  .leg.left {
+    left: 10px;
+  }
+  
+  .leg.right {
+    right: 10px;
+    animation-delay: 0.5s;
+  }
+  
+  /* Walking animation */
+  @keyframes legMove {
+    0%, 100% { transform: rotate(20deg); }
+    50% { transform: rotate(-20deg); }
+  }
+  
+  @keyframes armSwing {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+  }
+  
+  /* Jumping pose */
+  #player.jumping {
+    border-radius: 40% / 30%;
+    transform: rotate(15deg);
+    animation: none;
+  }
+  
+  #player.jumping .arm,
+  #player.jumping .leg {
+    animation: none;
+    transform: rotate(0);
+  }
+  
+  /* Speed boost color change */
+  #player.speed-boost {
+    background-color: #bf616a;
+    box-shadow: inset -5px 0 15px #d08770;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Animation for power-up effect */
+  @keyframes powerUpAnim {
+    0%, 100% { box-shadow: 0 0 8px 2px #d08770; }
+    50% { box-shadow: 0 0 20px 6px #ebcb8b; }
+  }
+  #player.power-up {
+    animation: powerUpAnim 1s infinite alternate;
+  }
+  
+  /* Buttons */
+  #ui-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+  }
+  
+  button {
+    background-color: #88c0d0;
+    border: none;
+    padding: 8px 14px;
+    margin-left: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3b4252;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #5e81ac;
+    color: white;
+  }
+  
+  /* Responsive for mobile */
+  @media (max-width: 480px) {
+    #game-container {
+      height: 300px;
+    }
+    #player {
+      width: 45px;
+      height: 60px;
+    }
+    .leg {
+      width: 12px;
+      height: 24px;
+    }
+    .arm {
+      width: 8px;
+      height: 24px;
+    }
+    #scoreboard {
+      font-size: 14px;
+    }
+    button {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+  }
+  
